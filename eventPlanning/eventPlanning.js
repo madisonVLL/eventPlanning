@@ -224,6 +224,27 @@ function addToSearch(dbName, array) {
     }
 }
 
+function changeDetails(dbName) {
+    var request = indexedDB.open(dbName, 2);
+    request.onerror = (event) => {
+        console.error("Cannot open " + dbName)
+    }
+    request.onsuccess = (event) => {
+        var db = event.target.result;
+        var transaction = db.transaction(dbName, "readwrite");
+        var store = transaction.objectStore(dbName);
+        store.openCursor().onsuccess = (event) => {
+            var cursor = event.target.result; 
+            if (dbName == "HostInfo") { 
+               
+            }
+            else if (dbName == "TaskInfo") {
+                cursor.continue(); 
+            }
+        }
+    }
+}
+
 //this function clears input fields baed on an array of input ids
 function clearInputFields(inputFields) {
     inputFields.forEach((element) => $(element).val('') )
