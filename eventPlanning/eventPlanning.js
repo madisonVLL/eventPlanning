@@ -236,7 +236,22 @@ function changeDetails(dbName) {
         store.openCursor().onsuccess = (event) => {
             var cursor = event.target.result; 
             if (dbName == "HostInfo") { 
-               
+               if(cursor.value.eventDate != $("#eventDate").val()) {
+                    cursor[eventDate] = $("#eventDate").val();
+                    cursor.continue();
+               }
+               else if (cursor.value.eventType != $("#eventType").val()) {
+                cursor[eventType] = $("#eventType").val();
+                cursor.continue();
+                }
+                else if (cursor.value.inviteType != $("#inviteType").val()) {
+                    cursor[inviteType] = $("#inviteType").val();
+                    cursor.continue();
+                }
+                else if (cursor.value.address != "none" || cursor.value.address != $("#hostAddress").val()) {
+                    cursor[address] = $("#hostAddress").val();
+                    cursor.continue();
+                }
             }
             else if (dbName == "TaskInfo") {
                 cursor.continue(); 
