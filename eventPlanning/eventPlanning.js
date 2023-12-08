@@ -346,10 +346,10 @@ window.onload = (event) => {
         /*This validates phone numbers by selecting the class of the phone number input*/
         var phoneInput = document.querySelector("#hostPhone");
         window.intlTelInput(phoneInput, {
-        placeholderNumberType: "MOBILE",
-        preferredCountries: ['us','cn', 'jp', 'uk'],
-        separateDialCode: true,
-        utilsScript: "valPhone/js/utils.js"
+            placeholderNumberType: "MOBILE",
+            preferredCountries: ['us','cn', 'jp', 'uk'],
+            separateDialCode: true,
+            utilsScript: "valPhone/js/utils.js"
         });
 
         $("#reqEmailPhoneBtn").click(function(){
