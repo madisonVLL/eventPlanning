@@ -235,7 +235,7 @@ function changeDetails(dbName) {
         var store = transaction.objectStore(dbName);
         store.openCursor().onsuccess = (event) => {
             var cursor = event.target.result; 
-            if (dbName == "HostInfo") { 
+            if (dbName == "HostInfo") { //this conditional statement changed general event details
                if(cursor.value.eventDate != $("#eventDate").val()) {
                     cursor[eventDate] = $("#eventDate").val();
                     cursor.continue();
