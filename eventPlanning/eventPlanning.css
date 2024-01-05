@@ -1320,14 +1320,14 @@ Non Jquery Stuff
 */
 
 body{
-    color:rgb(93, 28, 154);
-    background-color: rgb(236, 222, 250);
+    color:#153F51;
+    background-color: #A5DBF3;
 }
 
 input,select,button,textarea{
     font-family: 'DM Serif Display', serif;
     background-color: white;
-    color: rgb(93, 28, 154);
+    color: #1F3038;
 	border-radius: 0.5em;
 }
 
@@ -1348,10 +1348,11 @@ table tbody tr:hover {
 	font-weight: bold;
 }
 #showHost div {
-	border: rgb(93, 28, 154);
+	border: #1F3038;
 }
 
-
-
-
-
+tr:hover {
+	background-color: white;
+	cursor: pointer;
+	font-weight: bold;
+}

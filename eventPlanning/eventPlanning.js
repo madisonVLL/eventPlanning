@@ -80,7 +80,8 @@ function displayList(dbName) {
         req = store.count();
         req.onsuccess = (event) => {
             if (req === 1) {
-                if (dbName == "HostInfo") { console.log("one host"); $("hostCount").text("There is " + req + " host for your event"); console.log("host cound displayed")}
+                if (dbName == "HostInfo") { console.log("one host"); $("hostCount").text("There is "
+                 + req + " host for your event"); console.log("host cound displayed")}
                 else if (store == "GuestInfo") {}
                 else if (store == "TaskInfo") {}  
                 else {}
@@ -98,7 +99,8 @@ function displayList(dbName) {
             var cursor = event.target.result; 
             if (cursor) {
                 if (dbName == "HostInfo") {
-                    var $hostTR = "<tr><td>" + cursor.value.firstName + "</td><td>" + cursor.value.lastName + "</td><td>" + cursor.value.phone + "</td><td>" + cursor.value.email + "</td></tr>";
+                    var $hostTR = "<tr><td>" + cursor.value.firstName + "</td><td>" + cursor.value.lastName 
+                    + "</td><td>" + cursor.value.phone + "</td><td>" + cursor.value.email + "</td></tr>";
                     $hostTR.id = cursor.value.phone; 
                     $("#HostInfoTable").append($hostTR);  
                     cursor.continue(); 
@@ -109,15 +111,20 @@ function displayList(dbName) {
                     } 
                     else if (cursor.value.eventName !== "none" && cursor.value.address === "none") {
                         var eventTableHeaders = ["Event Name: ", "Event Type: ", "Event Date: ", "Invite Type: "]
-                        var eventDetails = [cursor.value.eventName, cursor.value.eventType, listEventDate, cursor.value.inviteType]
+                        var eventDetails = [cursor.value.eventName, cursor.value.eventType, listEventDate, 
+                            cursor.value.inviteType]
                     }
                     else if (cursor.value.eventName === "none" && cursor.value.address !== "none") {
-                        var eventTableHeaders = ["Event Type: ", "Event Date: ", "Invite Type: ", "Invitation Return Address: "]
-                        var eventDetails = [cursor.value.eventType, listEventDate, cursor.value.inviteType, cursor.value.address]
+                        var eventTableHeaders = ["Event Type: ", "Event Date: ", "Invite Type: ", 
+                        "Invitation Return Address: "]
+                        var eventDetails = [cursor.value.eventType, listEventDate, cursor.value.inviteType,
+                             cursor.value.address]
                     }
                     else {
-                        var eventTableHeaders = ["Event Name: ", "Event Type: ", "Event Date: ", "Invite Type: ", "Invitation Return Address: "]
-                        var eventDetails = [cursor.value.eventName, cursor.value.eventType, listEventDate, cursor.value.inviteType, cursor.value.address]
+                        var eventTableHeaders = ["Event Name: ", "Event Type: ", "Event Date: ", "Invite Type: ",
+                         "Invitation Return Address: "]
+                        var eventDetails = [cursor.value.eventName, cursor.value.eventType, listEventDate,
+                             cursor.value.inviteType, cursor.value.address]
                     }   
                     //combines two arrays and creates a key value pair. key = eventTableHeaders value = eventDetails
                     var eventObject = createObjectFromArrays(eventTableHeaders, eventDetails);
@@ -285,7 +292,8 @@ function clearTableBydbName (dbName) {
 function dtLocalTDate(date) {
     var eTime = new Date(date)
     var DayWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][eTime.getDay()];
-    var DayMonth = ["January","February","March","April","May","June","July","August","September","October","November","December"][eTime.getMonth()];
+    var DayMonth = ["January","February","March","April","May","June","July","August","September","October",
+    "November","December"][eTime.getMonth()];
     var DayDay = eTime.getDate().toString();
     var DayYear = eTime.getFullYear().toString();
   
@@ -319,8 +327,10 @@ function createObjectFromArrays(keys, values) {
     
 function collectData(dbName) {
         if (dbName == "HostInfo") {
-            if ($("hostAddressWExp").is(":visible")) {var hostAddress = document.getElementById("hostAddress").value;} else {var hostAddress = "none";}
-            if($("eventNameWExp").is(":visible")) {var eventName = document.getElementById("eventName").value;} else { var eventName = "none";}
+            if ($("hostAddressWExp").is(":visible")) {var hostAddress = document.getElementById("hostAddress").value;}
+             else {var hostAddress = "none";}
+            if($("eventNameWExp").is(":visible")) {var eventName = document.getElementById("eventName").value;}
+             else { var eventName = "none";}
             
             var data = {
                 "phone": document.getElementById("hostPhone").value,
@@ -359,8 +369,10 @@ function collectData(dbName) {
 function switchTable(dbName) {
     if (dbName == "HostInfo") {
         clearInputFields(["#hostFName", "#hostLName", "#hostPhone", "#hostEmail"]);
-        additionReadOnly(["#eventType, #eventDate, #InviteType, #hostAddress"], true)//this changes the event input field to read only unless change event details button is clicked
-        $("#welcomeMsg").slideUp("slow");//these two make the transition from the welcome message to adding another a host
+        additionReadOnly(["#eventType, #eventDate, #InviteType, #hostAddress"], true)
+        //this changes the event input field to read only unless change event details button is clicked
+        $("#welcomeMsg").slideUp("slow");
+        //these two make the transition from the welcome message to adding another a host
         $("#hostsDiv").slideDown("slow");
         }
 }
@@ -368,7 +380,8 @@ function switchTable(dbName) {
 window.onload = (event) => {
         $("#reqEmailPhoneExp, #hostAddressWExp, #hostsDiv, #eventNameWExp").hide();
         /*This sets up the autocomplete for the event inputs*/
-        const eventTypes = ["Wedding", "Birthday Party", "Sleepover/Slumber Party", "Child's Birthday Party", "Dinner Party", "Game Night", "Costume Party", "Work Event", "Tailgate", "Game Watch Party", "Rehersal Dinner", "Bachelor/ette Party", "Holiday Party", "Pool Party", "Theme Party", "Coming of Age Party", "Housewarming Party", "Other", "Bar/Bat Mitzvah", "Barbecue (BBQ)", "Baby Shower", "Quinceanera", "Funeral", "Cocktail Party", "Dance Party"]
+        const eventTypes = ["Wedding", "Birthday Party", "Sleepover/Slumber Party", "Child's Birthday Party", 
+        "Dinner Party", "Game Night", "Costume Party", "Work Event", "Tailgate", "Game Watch Party", "Rehersal Dinner", "Bachelor/ette Party", "Holiday Party", "Pool Party", "Theme Party", "Coming of Age Party", "Housewarming Party", "Other", "Bar/Bat Mitzvah", "Barbecue (BBQ)", "Baby Shower", "Quinceanera", "Funeral", "Cocktail Party", "Dance Party"]
         eventTypes.sort();
         $("#eventType").autocomplete({
             source: eventTypes
@@ -436,6 +449,7 @@ window.onload = (event) => {
             clearInputFields(["#searchHost"]);
         })
         $("#clearHostButton").on("click", function() {(clearDatabase("HostInfo"))});
-        $("#chngEveDetBtn").on("click", function(){additionReadOnly(["#eventType, #eventDate, #InviteType, #hostAddress"], false)})
+        $("#chngEveDetBtn").on("click", function(){additionReadOnly(
+            ["#eventType, #eventDate, #InviteType, #hostAddress"], false)})
 
     };

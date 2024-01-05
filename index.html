@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta charset="utf-8" />
     <!--Title is currently Toggle Button, work in progress-->
     <title>Event Planning</title>
+    <link rel="shortcut icon" type="image/jpg" href="images/L&L_Logo.jpg"/>
     <!--Link to Jquery-->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <!--Link to Jquery UI-->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <!--JQuery CSS-->
     <link rel="stylesheet" href="eventPlanning/eventPlanning.css">
-    <!--This is the link to the JQuery DataTable CDN-->
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" ></script>
-    <!--This is the link to the various icons from fontAwesome-->
-    <script src="https://kit.fontawesome.com/b9cd24ea44.js" crossorigin="anonymous" ></script>
-    <!--Link to validate phone numbers by country code-->
-    <script src="eventPlanning/valPhone/js/intlTelInput.js"></script>
-    <link rel="stylesheet" href="eventPlanning/valPhone/css/intlTelInput.css" />
-    <!--This is the CDN which converts military time in date time to standard time-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js" ></script>
     <!--This is the link to the JavaScipt File-->
-    <script src="eventPlanning/eventPlanning.js" type="text/javascript"></script>
+    <script src="eventPlanning/eventPlanning.js"></script>
+    <!--This is the link to the JQuery DataTable CDN-->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <!--This is the link to the font (DM Serif Display)-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" > 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin > 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet" >
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <!--This is the link to the various icons from fontAwesome-->
+    <script src="https://kit.fontawesome.com/b9cd24ea44.js" crossorigin="anonymous"></script>
+    <!--Link to validate phone numbers by country code-->
+    <script src="valPhone/js/intlTelInput.js"></script>
+    <link rel="stylesheet" href="valPhone/css/intlTelInput.css" />
+    <!--This is the CDN which converts military time in date time to standard time-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
+    <!-- AddEvent script -->
+    <script type="text/javascript" src="https://cdn.addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+    <!-- AddEvent theme css -->
+<link rel="stylesheet" href="https://cdn.addevent.com/libs/atc/themes/fff-theme-18/theme.css" type="text/css" media="screen" />
 </head>
 <body>
     <div id="welcomeMsg">
@@ -34,7 +38,44 @@
         
     </div>
     <div id="hostDiv">
+        <div id="hostsDiv">
+            <p>Thank you <span id="initHostName"></span> for submitting a little bit of information to get this party started!</p>
+            <div id="addAdditionalHost"></div>
+            <button id="showHostButton" name="show host list"><i class="fa-solid fa-users"></i>Show Host and Event Details</button>
+            <div id="showHost">
+                <table id="HostInfoTable">
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                </table>
+                <br>
+                <p>Planning a Party Which Takes a Team? Click <b> Additional Host</b> Button</p>
+                <button id="addHostContacts"><i class="fa-solid fa-user-plus"></i>Additional Host</button>
+                <p>No Longer Want/Need Another Host? Search For Their <b>Phone Number</b> Delete From Host List</p>
+                <input id="searchHost" placeholder="Search For Host">
+                <button id="deleteHostButton"type="submit" name="Delete Host"><i class="fa-solid fa-user-minus"></i> Delete Host</button>
+                <button id="clearHostButton"type="submit" name="Delete All Hosts"><i class="fa-solid fa-user-slash"></i> Delete All Hosts</button>
+                <br>
+                <p><b>Event Details:</b></p>
+                <table id="eventDetailsTable"></table>
+                <div title="Add to Calendar" class="addeventatc" data-render="inline-buttons">
+                    Add to Calendar
+                    <span class="start">01/06/2024 08:00 AM</span>
+                    <span class="end">01/06/2024 10:00 AM</span>
+                    <span class="timezone">America/Los_Angeles</span>
+                    <span class="title">Summary of the event</span>
+                    <span class="description">Description of the event</span>
+                    <span class="location">Location of the event</span>
+                </div>
+                <div id="changeEventDetails">
+                    <p>Need To Change Some Event Details? Click the Change Event Details Button Down Below</p>
+                    <button id="EveDetBtn">Change Event Details</button>
+                </div>
+            </div>
+        </div>
     <div id="hostContact">
+        <p><b>Host Details: </b></p>
         <p>First Name</p>
         <input type="text" id="hostFName" placeholder="First Name" req autocomplete="given-name">
         <p>Last Name</p>
@@ -50,34 +91,8 @@
         <input type="tel" id="hostPhone" name="Host Phone Number" req>
         <p>Email Address</p>
         <input type="email" id="hostEmail" autocomplete="Email" placeholder="Email" req>
-    </div>
-    <div id="hostsDiv">
-        <p>Thank you <span id="initHostName"></span> for submitting a little bit of information to get this party started!</p>
-        <p>Planning a Party Which Takes a Team?</p>
-        <div id="addHostContacts"></div>
-        <div id="addAdditionalHost"></div>
-        <button id="showHostButton" name="show host list"><i class="fa-solid fa-users"></i>Show Host and Event Details</button>
-        <div id="showHost">
-            <table id="HostInfoTable">
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Phone Number</th>
-                <th>Email</th>
-            </table>
-            <br>
-            <p id="hostCount"></p>
-            <p>No Longer Want/Need Another Host? Search For Their <b>Phone Number</b> Delete From Host List</p>
-            <input id="searchHost" placeholder="Search For Host">
-            <button id="deleteHostButton"type="submit" name="Delete Host"><i class="fa-solid fa-user-minus"></i> Delete Host</button>
-            <button id="clearHostButton"type="submit" name="Delete All Hosts"><i class="fa-solid fa-user-slash"></i> Delete All Hosts</button>
-            <br>
-            <p><b>Event Details:</b></p>
-            <p id="eventDetailsTable"></p>
-            <div id="changeEventDetails">
-                <p>Need To Change Some Event Details? Click the Change Event Details Button Down Below</p>
-                <button id="chngEveDetBtn">Change Event Details</button>
-            </div>
-        </div>
+        <button id="addHostButton"><i class="fa-solid fa-user-plus"></i> Add Host</button>
+        <button id="additionalHostButton"><i class="fa-solid fa-user-plus"></i> Add Additional Host</button>
     </div>
     <div id="eventDetails">
             <p>Event Type</p>
@@ -102,10 +117,12 @@
             </select>
             <div id="hostAddressWExp">
                 <p>Please submit a return address to have on file</p>
-               <textarea id="hostAddress" autocomplete="address"></textarea>
+                <textarea id="hostAddress" autocomplete="address"></textarea>
             </div>
+            <br>
+            <button id="changeEventDetailsButton">Edit Event Details</button>
     </div>
-    <button id="addHostButton"><i class="fa-solid fa-user-plus"></i> Add Host</button>
+        <p>All set with the host and event details? Press the continue button below</p>
     </div>
     <div id="guestDiv">
 
