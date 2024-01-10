@@ -11,3 +11,4 @@ As event planning is one of my greatest most challenging pleasures, I wanted to 
 
 1. displaying user information
 2. editing database after initially created
+3. adding guest capabilities
