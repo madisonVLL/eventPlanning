@@ -22,14 +22,13 @@
     <!--This is the link to the various icons from fontAwesome-->
     <script src="https://kit.fontawesome.com/b9cd24ea44.js" crossorigin="anonymous"></script>
     <!--Link to validate phone numbers by country code-->
-    <script src="valPhone/js/intlTelInput.js"></script>
-    <link rel="stylesheet" href="valPhone/css/intlTelInput.css" />
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
     <!--This is the CDN which converts military time in date time to standard time-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
     <!-- AddEvent script -->
     <script type="text/javascript" src="https://cdn.addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
     <!-- AddEvent theme css -->
-<link rel="stylesheet" href="https://cdn.addevent.com/libs/atc/themes/fff-theme-18/theme.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="https://cdn.addevent.com/libs/atc/themes/fff-theme-18/theme.css" type="text/css" media="screen" />
 </head>
 <body>
     <div id="welcomeMsg">
@@ -88,7 +87,7 @@
         </div>
         <br>
         <p>Phone Number</p>
-        <input type="tel" id="hostPhone" name="Host Phone Number" req>
+        <input type="tel" id="phone" name="Host Phone Number" req>
         <p>Email Address</p>
         <input type="email" id="hostEmail" autocomplete="Email" placeholder="Email" req>
         <button id="addHostButton"><i class="fa-solid fa-user-plus"></i> Add Host</button>
