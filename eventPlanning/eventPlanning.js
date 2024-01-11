@@ -104,7 +104,6 @@ function displayList(dbName) {
                     $hostTR.id = cursor.value.phone; 
                     $("#HostInfoTable").append($hostTR);  
                     cursor.continue(); 
-                    var listEventDate = dtLocalTDate(cursor.value.eventDate);
                     if (cursor.value.address === "none" && cursor.value.eventName === "none") {
                         var eventTableHeaders = ["Event Type: ", "Event Date: ", "Invite Type: "]
                         var eventDetails = [cursor.value.eventType, listEventDate, cursor.value.inviteType]
@@ -281,6 +280,7 @@ function additionReadOnly(inputFields, boolean) {
         inputFields.forEach((element) => $(element).prop('readwrite', true));
     }
 }
+
 //this function clears tables by the index
 function clearTableBydbName (dbName) {
     var indexTable = "#" + dbName + "Table";
@@ -305,6 +305,7 @@ function dtLocalTDate(date) {
     var eventDate =  DayWeek + ", " + DayMonth + " " + DayDay + ", " + DayYear + " at " + sTime;
     return eventDate;
 }
+
 //this function alerts the user in the website if they don't fill out all fields of a form
 function errorAddAlert() {
     alert("cannot save information, please make sure all fields are filled out before submitting");
