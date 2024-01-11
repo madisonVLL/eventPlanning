@@ -23,6 +23,8 @@
     <script src="https://kit.fontawesome.com/b9cd24ea44.js" crossorigin="anonymous"></script>
     <!--Link to validate phone numbers by country code-->
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+    <!--This is the css for validating the phone number-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
     <!--This is the CDN which converts military time in date time to standard time-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
     <!-- AddEvent script -->
@@ -87,7 +89,7 @@
         </div>
         <br>
         <p>Phone Number</p>
-        <input type="tel" id="phone" name="Host Phone Number" req>
+        <input type="tel" id="phone" req>
         <p>Email Address</p>
         <input type="email" id="hostEmail" autocomplete="Email" placeholder="Email" req>
         <button id="addHostButton"><i class="fa-solid fa-user-plus"></i> Add Host</button>
