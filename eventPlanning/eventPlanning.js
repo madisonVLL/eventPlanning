@@ -377,12 +377,24 @@ function switchTable(dbName) {
         $("#hostsDiv").slideDown("slow");
         }
 }
+
+function additional_info_slide(id1, condition, id2) {
+    $(id1).change(function(){
+        if($(id1).value === condition) {
+        $(id2).slideDown("slow");
+        }
+    });
+}
     
 window.onload = (event) => {
-        $("#reqEmailPhoneExp, #hostAddressWExp, #hostsDiv, #eventNameWExp").hide();
+        $("#reqEmailPhoneExp, #hostAddressWExp, #hostsDiv, #eventNameWExp, #additionalHostButton").hide();
         /*This sets up the autocomplete for the event inputs*/
-        const eventTypes = ["Wedding", "Birthday Party", "Sleepover/Slumber Party", "Child's Birthday Party", 
-        "Dinner Party", "Game Night", "Costume Party", "Work Event", "Tailgate", "Game Watch Party", "Rehersal Dinner", "Bachelor/ette Party", "Holiday Party", "Pool Party", "Theme Party", "Coming of Age Party", "Housewarming Party", "Other", "Bar/Bat Mitzvah", "Barbecue (BBQ)", "Baby Shower", "Quinceanera", "Funeral", "Cocktail Party", "Dance Party"]
+        const eventTypes = ["Wedding", "Birthday Party", "Sleepover/Slumber Party",
+        "Child's Birthday Party", "Dinner Party", "Game Night", "Costume Party", 
+        "Work Event", "Tailgate", "Game Watch Party", "Rehersal Dinner", 
+        "Bachelor/ette Party", "Holiday Party", "Pool Party", "Theme Party", 
+        "Coming of Age Party", "Housewarming Party", "Other", "Bar/Bat Mitzvah",
+        "Barbecue (BBQ)", "Baby Shower", "Quinceanera", "Funeral", "Cocktail Party", "Dance Party"];
         eventTypes.sort();
         $("#eventType").autocomplete({
             source: eventTypes
@@ -402,23 +414,25 @@ window.onload = (event) => {
         $("#reqEmailPhoneBtn").click(function(){
         $("#reqEmailPhoneExp").toggle('slow');});
 
+        additional_info_slide("#eventNameSelect", "eventName", "#eventNameWExp")
+        additional_info_slide("#InviteType",  "paperInviteSelect" || "bothInviteSelect", "#hostAddressWExp")
+
+       /*
         $("#eventNameSelect").change(function(){
-            if($("eventNameSelect").value = "eventName") {
+            if($("eventNameSelect").value === "eventName") {
             $("#eventNameWExp").slideDown("slow");
-            }
-            else if($("eventNameSelect").value = "none"){
-                $("eventNameWExp").slideUp("slow"); 
             }
         })
          
         $("#InviteType").change(function(){
-            if($("InviteType").value = "paperInviteSelect" || "bothInviteSelect") {
+            if($("InviteType").value === "paperInviteSelect" || "bothInviteSelect") {
             $("#hostAddressWExp").slideDown("slow");
             }
             else{
                 $("#hostAddressWExp").slideUp("slow"); 
             }
         });
+        */
         /*
         These functions below set up the event listeners for host information
         */
