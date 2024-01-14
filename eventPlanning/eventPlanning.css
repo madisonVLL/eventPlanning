@@ -6,7 +6,7 @@ Non-JQuery Styling Elements for index.html
 
 body{
     color:#153F51;
-    background-color: #A5DBF3;
+    background-image: linear-gradient(90deg, rgb(117, 191, 255), rgb(209, 246, 255));
 }
 
 input,select,button,textarea{
