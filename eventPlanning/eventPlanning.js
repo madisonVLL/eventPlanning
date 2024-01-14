@@ -387,6 +387,7 @@ function additional_info_slide(id1, condition, id2) {
 }
     
 window.onload = (event) => {
+        //This hides 
         $("#reqEmailPhoneExp, #hostAddressWExp, #hostsDiv, #eventNameWExp, #additionalHostButton").hide();
         /*This sets up the autocomplete for the event inputs*/
         const eventTypes = ["Wedding", "Birthday Party", "Sleepover/Slumber Party",
@@ -445,13 +446,14 @@ window.onload = (event) => {
             switchTable("HostInfo");
             });
         }
-
-        $("AddHostButton").on("click", function(){
-            var hostData = collectData("HostInfo"); 
-            addToIndex("HostInfo", hostData);
-            addToSearch("HostInfo", searchHost);
-            clearInputFields(["#hostFName", "#hostLName", "#hostPhone", "#hostEmail"]);
-        })
+        else {
+            $("AddHostButton").on("click", function(){
+                var hostData = collectData("HostInfo"); 
+                addToIndex("HostInfo", hostData);
+                addToSearch("HostInfo", searchHost);
+                clearInputFields(["#hostFName", "#hostLName", "#hostPhone", "#hostEmail"]);
+            })
+        }
 
         $("#showHostButton").on("click", function (){displayList("HostInfo");});
        
