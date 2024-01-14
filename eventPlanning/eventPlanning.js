@@ -34,6 +34,7 @@ function itemDB(dbName) {
         console.log("Database Opened -> " + db.name);
         var transaction = db.transaction(dbName, "readonly").objectStore(dbName);
         var countRequest = transaction.count();
+        console.log(countRequest)
         countRequest.onsuccess = (event) => {
         var dataCount = countRequest.result;
         if (dataCount >= 1) {
@@ -387,8 +388,8 @@ function additional_info_slide(id1, condition, id2) {
 }
     
 window.onload = (event) => {
-        //This hides 
-        $("#reqEmailPhoneExp, #hostAddressWExp, #hostsDiv, #eventNameWExp, #additionalHostButton").hide();
+        //This hides some div and element within the hostDiv
+        $("#reqEmailPhoneExp, #hostAddressWExp, #editHostDiv, #eventNameWExp, #additionalHostButton").hide();
         /*This sets up the autocomplete for the event inputs*/
         const eventTypes = ["Wedding", "Birthday Party", "Sleepover/Slumber Party",
         "Child's Birthday Party", "Dinner Party", "Game Night", "Costume Party", 
@@ -438,7 +439,7 @@ window.onload = (event) => {
         These functions below set up the event listeners for host information
         */
         var HostInfoExist = itemDB("HostInfo");
-        if (HostInfoExist = false) {
+        if (HostInfoExist = false) {//if the database has no values, then it completes these actions
             $("#addHostButton").on("click", function(){
             var hostData = collectData("HostInfo"); 
             addToIndex("HostInfo", hostData);//need to add this
