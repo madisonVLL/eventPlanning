@@ -380,7 +380,7 @@ function switchTable(dbName) {
 
 function additional_info_slide(id1, condition, id2) {
     $(id1).change(function(){
-        if($(id1).value === condition) {
+        if($(id1).value == condition) {
         $(id2).slideDown("slow");
         }
     });
