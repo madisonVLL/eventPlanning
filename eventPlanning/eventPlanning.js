@@ -431,7 +431,8 @@ window.onload = (event) => {
             switchTable("HostInfo");
             });
         }
-        else {
+        /*
+         else {
             $("AddHostButton").on("click", function(){
                 var hostData = collectData("HostInfo"); 
                 addToIndex("HostInfo", hostData);
@@ -439,6 +440,7 @@ window.onload = (event) => {
                 clearInputFields(["#hostFName", "#hostLName", "#hostPhone", "#hostEmail"]);
             })
         }
+         */
 
         $("#showHostButton").on("click", function (){displayList("HostInfo");});
        
