@@ -419,28 +419,12 @@ window.onload = (event) => {
         additional_info_slide("#eventNameSelect", "eventName", "#eventNameWExp")
         additional_info_slide("#InviteType",  "paperInviteSelect" || "bothInviteSelect", "#hostAddressWExp")
 
-       /*
-        $("#eventNameSelect").change(function(){
-            if($("eventNameSelect").value === "eventName") {
-            $("#eventNameWExp").slideDown("slow");
-            }
-        })
-         
-        $("#InviteType").change(function(){
-            if($("InviteType").value === "paperInviteSelect" || "bothInviteSelect") {
-            $("#hostAddressWExp").slideDown("slow");
-            }
-            else{
-                $("#hostAddressWExp").slideUp("slow"); 
-            }
-        });
-        */
         /*
         These functions below set up the event listeners for host information
         */
         var HostInfoExist = itemDB("HostInfo");
         if (HostInfoExist = false) {//if the database has no values, then it completes these actions
-            $("#addHostButton").on("click", function(){
+            $("#host_info_cont").on("click", function(){
             var hostData = collectData("HostInfo"); 
             addToIndex("HostInfo", hostData);//need to add this
             addToSearch("HostInfo", searchHost);
