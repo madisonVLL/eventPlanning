@@ -330,9 +330,9 @@ function createObjectFromArrays(keys, values) {
 function collectData(dbName) {
         if (dbName == "HostInfo") {
             if ($("hostAddressWExp").is(":visible")) {var hostAddress = document.getElementById("hostAddress").value;}
-             else {var hostAddress = "none";}
+            else {var hostAddress = "none";}
             if($("eventNameWExp").is(":visible")) {var eventName = document.getElementById("eventName").value;}
-             else { var eventName = "none";}
+            else { var eventName = "none";}
             
             var data = {
                 "phone": document.getElementById("hostPhone").value,
@@ -342,7 +342,7 @@ function collectData(dbName) {
                 eventName: eventName,
                 eventType: document.getElementById("eventType").value,
                 eventDate: document.getElementById("eventDate").value,
-                inviteType: document.getElementById("InviteType").value,
+                inviteType: $('input[name="inviteSelect"]:checked').val(),
                 address: hostAddress
             }
 
@@ -386,6 +386,7 @@ function additional_info_slide(id1, condition, id2) {
         }
     });
 }
+
     
 window.onload = (event) => {
         //This hides some div and element within the hostDiv
@@ -416,6 +417,18 @@ window.onload = (event) => {
         $("#reqEmailPhoneBtn").click(function(){
         $("#reqEmailPhoneExp").toggle('slow');});
 
+        $("#addEventName").click(function(){
+        $("#eventName").toggle('slow');});
+
+        var inviteSelectType = $('input[name="inviteSelect"]:checked').val();
+        if(inviteSelectType == "both_paper_elec_invites" || inviteSelectType == "paper_invites") {
+            //if the invite type is equal to paper or both paper and electronic invitations,
+            //it shows the host address div
+            $("#hostAddressWExp").slideDown("slow")
+        }
+
+        
+
         additional_info_slide("#eventNameSelect", "eventName", "#eventNameWExp")
         additional_info_slide("#InviteType",  "paperInviteSelect" || "bothInviteSelect", "#hostAddressWExp")
 
@@ -423,6 +436,7 @@ window.onload = (event) => {
         These functions below set up the event listeners for host information
         */
         var HostInfoExist = itemDB("HostInfo");
+        console.log(HostInfoExist);
         if (HostInfoExist = false) {//if the database has no values, then it completes these actions
             $("#host_info_cont").on("click", function(){
             var hostData = collectData("HostInfo"); 
@@ -431,16 +445,6 @@ window.onload = (event) => {
             switchTable("HostInfo");
             });
         }
-        /*
-         else {
-            $("AddHostButton").on("click", function(){
-                var hostData = collectData("HostInfo"); 
-                addToIndex("HostInfo", hostData);
-                addToSearch("HostInfo", searchHost);
-                clearInputFields(["#hostFName", "#hostLName", "#hostPhone", "#hostEmail"]);
-            })
-        }
-         */
 
         $("#showHostButton").on("click", function (){displayList("HostInfo");});
        
