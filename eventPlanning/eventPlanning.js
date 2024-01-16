@@ -420,14 +420,15 @@ window.onload = (event) => {
         $("#addEventName").click(function(){
         $("#eventName").toggle('slow');});
 
-        var inviteSelectType = $('input[name="inviteSelect"]:checked').val();
-        if(inviteSelectType == "both_paper_elec_invites" || inviteSelectType == "paper_invites") {
-            //if the invite type is equal to paper or both paper and electronic invitations,
-            //it shows the host address div
-            $("#hostAddressWExp").slideDown("slow")
-        }
+        $("submit_invite_button").click(function(){
+            var inviteSelectType = $('input[name="inviteSelect"]:checked').val();
+            if(inviteSelectType == "both_paper_elec_invites" || inviteSelectType == "paper_invites") {
+                //if the invite type is equal to paper or both paper and electronic invitations,
+                //it shows the host address div
+                $("#hostAddressWExp").slideDown("slow")
+            }
+        })
 
-        
 
         additional_info_slide("#eventNameSelect", "eventName", "#eventNameWExp")
         additional_info_slide("#InviteType",  "paperInviteSelect" || "bothInviteSelect", "#hostAddressWExp")
