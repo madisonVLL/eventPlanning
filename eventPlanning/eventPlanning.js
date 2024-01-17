@@ -421,6 +421,14 @@ window.onload = (event) => {
         $("#eventName").toggle('slow');});
 
         $("#submit_invite_button").click(function(){
+            console.log($('input[name="inviteSelect"]:checked').val())
+          if ( $('input[name="inviteSelect"]:checked').val() != "electronic_invites")  {
+            $("#hostAddressWExp").toggle('slow')
+          }
+        })
+
+        /*
+        $("#submit_invite_button").click(function(){
             var inviteSelectType = $('input[name="inviteSelect"]:checked').val();
             if(inviteSelectType == "both_paper_elec_invites" || inviteSelectType == "paper_invites") {
                 //if the invite type is equal to paper or both paper and electronic invitations,
@@ -428,6 +436,7 @@ window.onload = (event) => {
                 $("#hostAddressWExp").slideDown("slow")
             }
         })
+        */
 
 
         additional_info_slide("#eventNameSelect", "eventName", "#eventNameWExp")
