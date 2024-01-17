@@ -420,7 +420,7 @@ window.onload = (event) => {
         $("#addEventName").click(function(){
         $("#eventName").toggle('slow');});
 
-        $("submit_invite_button").click(function(){
+        $("#submit_invite_button").click(function(){
             var inviteSelectType = $('input[name="inviteSelect"]:checked').val();
             if(inviteSelectType == "both_paper_elec_invites" || inviteSelectType == "paper_invites") {
                 //if the invite type is equal to paper or both paper and electronic invitations,
@@ -437,7 +437,6 @@ window.onload = (event) => {
         These functions below set up the event listeners for host information
         */
         var HostInfoExist = itemDB("HostInfo");
-        console.log(HostInfoExist);
         if (HostInfoExist = false) {//if the database has no values, then it completes these actions
             $("#host_info_cont").on("click", function(){
             var hostData = collectData("HostInfo"); 
