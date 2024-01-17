@@ -37,6 +37,7 @@ function itemDB(dbName) {
         console.log(countRequest)
         countRequest.onsuccess = (event) => {
         var dataCount = countRequest.result;
+        console.log(dataCount)
         if (dataCount >= 1) {
             switchTable(dbName)
         }
@@ -375,7 +376,7 @@ function switchTable(dbName) {
         //this changes the event input field to read only unless change event details button is clicked
         $("#welcomeMsg").slideUp("slow");
         //these two make the transition from the welcome message to adding another a host
-        $("#hostsDiv").slideDown("slow");
+        $("#editHostDiv").slideDown("slow");
         }
 }
 
@@ -390,7 +391,7 @@ function additional_info_slide(id1, condition, id2) {
     
 window.onload = (event) => {
         //This hides some div and element within the hostDiv
-        $("#reqEmailPhoneExp, #hostAddressWExp, #editHostDiv, #eventNameWExp, #additionalHostButton").hide();
+        $("#reqEmailPhoneExp, #hostAddressWExp, #editHostDiv, #eventNameWExp, #changeEventDetailsButton, #additionalHostButton").hide();
         /*This sets up the autocomplete for the event inputs*/
         const eventTypes = ["Wedding", "Birthday Party", "Sleepover/Slumber Party",
         "Child's Birthday Party", "Dinner Party", "Game Night", "Costume Party", 
@@ -426,18 +427,6 @@ window.onload = (event) => {
             $("#hostAddressWExp").toggle('slow')
           }
         })
-
-        /*
-        $("#submit_invite_button").click(function(){
-            var inviteSelectType = $('input[name="inviteSelect"]:checked').val();
-            if(inviteSelectType == "both_paper_elec_invites" || inviteSelectType == "paper_invites") {
-                //if the invite type is equal to paper or both paper and electronic invitations,
-                //it shows the host address div
-                $("#hostAddressWExp").slideDown("slow")
-            }
-        })
-        */
-
 
         additional_info_slide("#eventNameSelect", "eventName", "#eventNameWExp")
         additional_info_slide("#InviteType",  "paperInviteSelect" || "bothInviteSelect", "#hostAddressWExp")
