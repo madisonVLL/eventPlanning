@@ -37,7 +37,6 @@ function itemDB(dbName) {
         console.log(countRequest)
         countRequest.onsuccess = (event) => {
         var dataCount = countRequest.result;
-        console.log(dataCount)
         if (dataCount >= 1) {
             switchTable(dbName)
         }
@@ -435,14 +434,13 @@ window.onload = (event) => {
         These functions below set up the event listeners for host information
         */
         var HostInfoExist = itemDB("HostInfo");
-        if (HostInfoExist = false) {//if the database has no values, then it completes these actions
-            $("#host_info_cont").on("click", function(){
+        print(HostInfoExist);
+        $("#host_info_cont").on("click", function(){
             var hostData = collectData("HostInfo"); 
             addToIndex("HostInfo", hostData);//need to add this
             addToSearch("HostInfo", searchHost);
             switchTable("HostInfo");
-            });
-        }
+        });
 
         $("#showHostButton").on("click", function (){displayList("HostInfo");});
        
