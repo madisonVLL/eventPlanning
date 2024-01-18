@@ -378,14 +378,6 @@ function switchTable(dbName) {
         }
 }
 
-function additional_info_slide(id1, condition, id2) {
-    $(id1).change(function(){
-        if($(id1).value == condition) {
-        $(id2).slideDown("slow");
-        }
-    });
-}
-
     
 window.onload = (event) => {
         //This hides some div and element within the hostDiv
@@ -421,9 +413,9 @@ window.onload = (event) => {
 
         $("#submit_invite_button").click(function(){
             console.log($('input[name="inviteSelect"]:checked').val())
-          if ( $('input[name="inviteSelect"]:checked').val() != "electronic_invites")  {
-            $("#hostAddressWExp").toggle('slow')
-          }
+            if ( $('input[name="inviteSelect"]:checked').val() != "electronic_invites")  {
+                $("#hostAddressWExp").toggle('slow')
+            }
         })
 
         additional_info_slide("#eventNameSelect", "eventName", "#eventNameWExp")
@@ -433,7 +425,7 @@ window.onload = (event) => {
         These functions below set up the event listeners for host information
         */
         var HostInfoExist = itemDB("HostInfo");
-        print(HostInfoExist);
+        console.log(HostInfoExist);
         $("#host_info_cont").on("click", function(){
             var hostData = collectData("HostInfo"); 
             addToIndex("HostInfo", hostData);//need to add this
