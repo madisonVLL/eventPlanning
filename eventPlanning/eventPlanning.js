@@ -34,7 +34,6 @@ function itemDB(dbName) {
         console.log("Database Opened -> " + db.name);
         var transaction = db.transaction(dbName, "readonly").objectStore(dbName);
         var countRequest = transaction.count();
-        console.log(countRequest)
         countRequest.onsuccess = (event) => {
         var dataCount = countRequest.result;
         if (dataCount >= 1) {
