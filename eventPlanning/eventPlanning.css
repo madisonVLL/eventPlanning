@@ -37,6 +37,18 @@ table tbody tr:hover {
 	border: #1F3038;
 }
 
+.form_div {
+    padding: 2em;
+    background-color: #92B6B1;
+    color: #153F51;
+}
+
+.form_div input[type=text], input[type=tel], textarea {
+    width: 100%;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
 tr:hover {
 	background-color: white;
 	cursor: pointer;

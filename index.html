@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-    <div id="hostContact">
+    <div id="hostContact" class="form_div">
         <p><b>Host Details: </b></p>
         <p>First Name</p>
         <input type="text" id="hostFName" placeholder="First Name" req autocomplete="given-name">
@@ -102,21 +102,13 @@
         <p>Email Address</p>
         <input type="email" id="hostEmail" autocomplete="Email" placeholder="Email" req>
     </div>
-    <div id="eventDetails">
-
-        
+    <div id="eventDetails" class="form_div">
             <p>Event Type</p>
             <input type="text" id="eventType" placeholder="Event Type">
-            
-            
             <p>Event Date</p>
             <input type="datetime-local" id="eventDate">
-
-
             <button id="addEventName">Add Event Name</button>
             <input type="text" id="eventName" placeholder="Event Name">
-
-
             <p>Inivitation Type</p>
             <input type="radio" id="electronic_invites" value="electronic_invites"name="inviteSelect">
             <label for="electronic_invites" name="inviteSelect">Electronic</label>
@@ -125,7 +117,6 @@
             <input type="radio"  id="both_paper_elec_invites" value="both_paper_elec_invites" name="inviteSelect">
             <label for="both_paper_elec_invites" name="inviteSelect">Paper and Electronic Invites</label>
             <button id="submit_invite_button">Submit Invite Type</button>
-        
             <div id="hostAddressWExp">
                 <p>Please submit a return address to have on file</p>
                 <textarea id="hostAddress" autocomplete="address"></textarea>
