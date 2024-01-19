@@ -412,21 +412,17 @@ window.onload = (event) => {
         $("#eventName").toggle('slow');});
 
         $("#submit_invite_button").click(function(){
-            console.log($('input[name="inviteSelect"]:checked').val())
             if ( $('input[name="inviteSelect"]:checked').val() != "electronic_invites")  {
                 $("#hostAddressWExp").toggle('slow')
             }
         })
-
-        additional_info_slide("#eventNameSelect", "eventName", "#eventNameWExp")
-        additional_info_slide("#InviteType",  "paperInviteSelect" || "bothInviteSelect", "#hostAddressWExp")
 
         /*
         These functions below set up the event listeners for host information
         */
         var HostInfoExist = itemDB("HostInfo");
         console.log(HostInfoExist);
-        $("#host_info_cont").on("click", function(){
+        $("#host_continue").on("click", function(){
             var hostData = collectData("HostInfo"); 
             addToIndex("HostInfo", hostData);//need to add this
             addToSearch("HostInfo", searchHost);

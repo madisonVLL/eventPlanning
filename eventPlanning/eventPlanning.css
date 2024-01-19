@@ -32,6 +32,7 @@ table tbody tr:hover {
 	cursor: pointer;
 	font-weight: bold;
 }
+
 #showHost div {
 	border: #1F3038;
 }
