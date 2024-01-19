@@ -421,7 +421,6 @@ window.onload = (event) => {
         These functions below set up the event listeners for host information
         */
         var HostInfoExist = itemDB("HostInfo");
-        console.log(HostInfoExist);
         $("#host_continue").on("click", function(){
             var hostData = collectData("HostInfo"); 
             addToIndex("HostInfo", hostData);//need to add this
