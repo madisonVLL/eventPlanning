@@ -39,16 +39,17 @@ table tbody tr:hover {
 
 .form_div {
     padding: 2em;
-    background-color: linear-gradient(rgb(191, 181, 255),rgb(117, 191, 255));
+    background-color: linear-gradient(180deg, rgb(191, 181, 255),rgb(117, 191, 255));
     width: 75%;
     margin: auto;
 }
 
-.form_div input[type=text], input[type=tel], input[type=email] textarea, 
+.form_div input[type=text], input[type=tel], input[type=email], textarea, 
 button {
     width: 100%;
     padding: 0.5em;
     box-sizing: border-box;
+    text-align: center;
 }
 
 tr:hover {

@@ -371,10 +371,8 @@ function switchTable(dbName) {
     if (dbName == "HostInfo") {
         clearInputFields(["#hostFName", "#hostLName", "#hostPhone", "#hostEmail"]);
         additionReadOnly(["#eventType, #eventDate, #InviteType, #hostAddress"], true)
-        //this changes the event input field to read only unless change event details button is clicked
-        $("#welcomeMsg").slideUp("slow");
-        //these two make the transition from the welcome message to adding another a host
         $("#editHostDiv").slideDown("slow");
+        $("#welcomeMsg").slideUp("slow");
         }
 }
 
@@ -400,7 +398,7 @@ window.onload = (event) => {
         })
 
         /*This validates phone numbers by selecting the class of the phone number input*/
-        const input = document.querySelector("#phone");
+        var input = document.querySelector("#hostPhone");
         window.intlTelInput(input, {
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
         });
