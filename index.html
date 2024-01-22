@@ -40,7 +40,7 @@
         <h2>Let's get started! Tell us some details about you and your event.</h2>
         
     </div>
-    <div id="hostDiv">
+    <div id="hostDiv" class="form_div">
         <div id="editHostDiv">
             <p>Thank you <span id="initHostName"></span> for submitting a little bit of information to get this party started!</p>
             <div id="addAdditionalHost"></div>
@@ -52,8 +52,9 @@
                     <th>Phone Number</th>
                     <th>Email</th>
                 </table>
+                <p id="hostCount"></p>
                 <br>
-                <p>Planning a Party Which Takes a Team? Click <b> Additional Host</b> Button</p>
+                <p>Planning a Party Which Takes a Team? Click the<b> Additional Host</b> Button</p>
                 <button id="addHostContacts"><i class="fa-solid fa-user-plus"></i>Additional Host</button>
                 <p>No Longer Want/Need Another Host? Search For Their <b>Phone Number</b> Delete From Host List</p>
                 <input id="searchHost" placeholder="Search For Host">
@@ -62,8 +63,7 @@
                 <br>
                 <p><b>Event Details:</b></p>
                 <table id="eventDetailsTable"></table>
-                <div title="Add to Calendar" class="addeventatc" data-render="inline-buttons">
-                    Add to Calendar
+                <div title="Add Event to Calendar" class="addeventatc" data-render="inline-buttons">
                     <span class="start">01/06/2024 08:00 AM</span>
                     <span class="end">01/06/2024 10:00 AM</span>
                     <span class="timezone">America/Los_Angeles</span>
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-    <div id="hostContact" class="form_div">
+    <div id="hostContact">
         <p><b>Host Details: </b></p>
         <p>First Name</p>
         <input type="text" id="hostFName" placeholder="First Name" req autocomplete="given-name">
@@ -102,7 +102,7 @@
         <p>Email Address</p>
         <input type="text" id="hostEmail" autocomplete="Email" placeholder="Email" req>
     </div>
-    <div id="eventDetails" class="form_div">
+    <div id="eventDetails">
             <p>Event Type</p>
             <input type="text" id="eventType" placeholder="Event Type">
             <p>Event Date</p>

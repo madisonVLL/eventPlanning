@@ -79,15 +79,15 @@ function displayList(dbName) {
         var store = transaction.objectStore(dbName);
         req = store.count();
         req.onsuccess = (event) => {
-            if (req === 1) {
-                if (dbName == "HostInfo") { console.log("one host"); $("hostCount").text("There is "
+            if (req == 1) {
+                if (dbName == "HostInfo") { console.log("one host"); $("#hostCount").text("There is "
                  + req + " host for your event"); console.log("host cound displayed")}
                 else if (store == "GuestInfo") {}
                 else if (store == "TaskInfo") {}  
                 else {}
             }
             else {
-                if (dbName == "HostInfo") { $("hostCount").text("There are " + req + " hosts for your event")}
+                if (dbName == "HostInfo") { $("#hostCount").text("There are " + req + " hosts for your event")}
                 else if (store == "GuestInfo") {}
                 else if (store == "TaskInfo") {}  
                 else {}  
@@ -102,6 +102,7 @@ function displayList(dbName) {
                     var $hostTR = "<tr><td>" + cursor.value.firstName + "</td><td>" + cursor.value.lastName 
                     + "</td><td>" + cursor.value.phone + "</td><td>" + cursor.value.email + "</td></tr>";
                     $hostTR.id = cursor.value.phone; 
+                    var listEventDate = dtLocalTDate(eventDate);
                     $("#HostInfoTable").append($hostTR);  
                     cursor.continue(); 
                     if (cursor.value.address === "none" && cursor.value.eventName === "none") {
