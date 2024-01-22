@@ -78,6 +78,7 @@ function displayList(dbName) {
         var transaction = db.transaction(dbName, "readonly");
         var store = transaction.objectStore(dbName);
         req = store.count();
+        console.log(req);
         req.onsuccess = (event) => {
             if (req == 1) {
                 if (dbName == "HostInfo") { console.log("one host"); $("#hostCount").text("There is "
@@ -292,19 +293,17 @@ function clearTableBydbName (dbName) {
 //this function converts datetime-local to a readible date
 function dtLocalTDate(date) {
     var eTime = new Date(date)
-    var DayWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][eTime.getDay()];
-    var DayMonth = ["January","February","March","April","May","June","July","August","September","October",
-    "November","December"][eTime.getMonth()];
-    var DayDay = eTime.getDate().toString();
-    var DayYear = eTime.getFullYear().toString();
-  
-    //this section converts time of day from military time to standard time,  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script> in html is required
-    var mTime = eTime.toString();
-    var mtsTime = mTime.slice(16, 21);
-    var sTime = moment(mtsTime, 'HH:mm').format('h:mm A');
+    const date_options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    };
+    console.log(date)
+    var eventTime = eTime.toLocaleTimeString(navigator.language)
+    var eventDate = eTime.toLocaleDateString(navigator, options)
 
-    var eventDate =  DayWeek + ", " + DayMonth + " " + DayDay + ", " + DayYear + " at " + sTime;
-    return eventDate;
+    return eventDate + " at " + eventTime;
 }
 
 //this function alerts the user in the website if they don't fill out all fields of a form
@@ -374,6 +373,7 @@ function switchTable(dbName) {
         additionReadOnly(["#eventType, #eventDate, #InviteType, #hostAddress"], true)
         $("#editHostDiv").slideDown("slow");
         $("#welcomeMsg").slideUp("slow");
+        $("#continue_host", ).hide();
         }
 }
 
