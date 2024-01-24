@@ -339,7 +339,7 @@ function collectData(dbName) {
                 email: document.getElementById("hostEmail").value,
                 eventName: eventName,
                 eventType: document.getElementById("eventType").value,
-                eventDate: document.getElementById("eventDate").value,
+                eventDate: document.getElementById("event_date").value,
                 inviteType: $('input[name="inviteSelect"]:checked').val(),
                 address: hostAddress
             }
