@@ -78,17 +78,16 @@ function displayList(dbName) {
         var transaction = db.transaction(dbName, "readonly");
         var store = transaction.objectStore(dbName);
         req = store.count();
-        console.log(req);
         req.onsuccess = (event) => {
-            if (req == 1) {
+            if (req.result == 1) {
                 if (dbName == "HostInfo") { console.log("one host"); $("#hostCount").text("There is "
-                 + req + " host for your event"); console.log("host cound displayed")}
+                 + req.result + " host for your event"); console.log("host cound displayed")}
                 else if (store == "GuestInfo") {}
                 else if (store == "TaskInfo") {}  
                 else {}
             }
             else {
-                if (dbName == "HostInfo") { $("#hostCount").text("There are " + req + " hosts for your event")}
+                if (dbName == "HostInfo") { $("#hostCount").text("There are " + req.result + " hosts for your event")}
                 else if (store == "GuestInfo") {}
                 else if (store == "TaskInfo") {}  
                 else {}  
@@ -301,7 +300,7 @@ function dtLocalTDate(date) {
     };
     console.log(date)
     var eventTime = eTime.toLocaleTimeString(navigator.language)
-    var eventDate = eTime.toLocaleDateString(navigator, options)
+    var eventDate = eTime.toLocaleDateString(navigator, date_options)
 
     return eventDate + " at " + eventTime;
 }
