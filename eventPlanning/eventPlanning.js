@@ -10,18 +10,13 @@ function itemDB(dbName) {
         if (dbName == "HostInfo") {
             const objectStore = db.createObjectStore("HostInfo", {keyPath: "phone"});
             objectStore.createIndex("phone", "phone", {unique: true});
-            //objectStore.createIndex("firstName", "firstName", {unique: false});
-            //objectStore.createIndex("lastName", "lastName", {unique: false});
         }
         else if (dbName == "GuestInfo") {
             const objectStore = db.createObjectStore("GuestInfo", {keyPath: "phone"});
             objectStore.createIndex("phone", "phone", {unique: true});
-            //objectStore.createIndex("firstName", "firstName", {unique: false});
-            //objectStore.createIndex("lastName", "lastName4", {unqiue: false});
         }
         else if (dbName == "TaskInfo") {
             const objectStore = db.createObjectStore("TaskInfo", {keyPath: "date"});
-            //objectStore.createIndex("date", "date", {unique: false});
             objectStore.createIndex("task", "task", {unique: false});
         }
         else {
@@ -155,6 +150,34 @@ function displayList(dbName) {
     }
     } 
 }
+
+function getAddressInfo(dbName) {
+    var request = indexedDB.open(dbName, 2);
+    request.onerror = (event) => {
+        console.error("Cannot open index to display")
+    }
+    request.onsuccess = (event) => {
+        var db = event.target.result;
+        var transaction = db.transaction(dbName, "readonly");
+        var store = transaction.objectStore(dbName);
+        store.openCursor().onsuccess = (event) => {
+            var cursor = event.target.result; 
+            if (cursor) {
+                if (dbName == "HostInfo") {
+                    return cursor.value.inviteType
+                    } 
+                else if (store == "GuestInfo") {
+
+                }
+                else if (store == "TaskInfo") {
+    
+                }
+                   
+                }
+            }
+    }
+    } 
+
 //this function deteles a specic item/index from the database
 function deleteByKey(dbName, phoneNumber, array) {
     var request = indexedDB.open(dbName, 2);
@@ -414,7 +437,7 @@ window.onload = (event) => {
         $("#eventDetails").toggle('slow')});
 
         $("#addHostContacts").click(function(){
-        $("#addAdditionalHost").toggle('slow')});
+        $("#hostContact").toggle('slow')});
 
         $("#submit_invite_button").click(function(){
             if ( $('input[name="inviteSelect"]:checked').val() != "electronic_invites")  {
@@ -439,6 +462,13 @@ window.onload = (event) => {
             var hostKey = document.getElementById("searchHost").value;
             deleteByKey("HostInfo", hostKey, searchHost);
             clearInputFields(["#searchHost"]);
+        })
+
+        $("#guest_continue").on("click", function(){
+            event_invite_type = getAddressInfo("HostInfo");
+            if (event_invite_type == "paper_invites" || event_invite_type == "both_paper_elec_invites") {
+                
+            }
         })
         $("#clearHostButton").on("click", function() {(clearDatabase("HostInfo"))});
         $("#chngEveDetBtn").on("click", function(){additionReadOnly(

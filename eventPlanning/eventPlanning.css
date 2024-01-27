@@ -9,6 +9,10 @@ body{
     background-image: linear-gradient(rgb(117, 191, 255), rgb(191, 181, 255));
 }
 
+h1, h2, h3, h4, h5, h6, h7, h8 {
+    size: 2em;
+}
+
 input,select,button,textarea{
     font-family: 'DM Serif Display', serif;
     background-color: white;
@@ -16,7 +20,7 @@ input,select,button,textarea{
 	border-radius: 0.5em;
 }
 
-table{
+table {
 	width: 100%;
 	justify-content: center;
 	text-align: center;
@@ -24,7 +28,6 @@ table{
 
 td {
 	text-align: center;
-	
 }
 
 table tbody tr:hover {
