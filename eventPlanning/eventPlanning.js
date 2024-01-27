@@ -132,7 +132,7 @@ function displayList(dbName) {
                     clearTableBydbName("EventDetails");
                     evntObj = Object.entries(eventObject);
                     var addEventDetails = evntObj.map( ([key, val] = entry) => {
-                        $("$EventDetailsTable").append("<br> ${key} ${value}");
+                        $("#EventDetailsTable").append("<br> ${key} ${value}");
                     });
                     for (each in eventObject, i = eventDetails.length()) {
                         for (var key in eventObject) {
@@ -371,11 +371,12 @@ function switchTable(dbName) {
         clearInputFields(["#hostFName", "#hostLName", "#hostPhone", "#hostEmail"]);
         additionReadOnly(["#eventType, #eventDate, #InviteType, #hostAddress"], true)
         $("#editHostDiv").slideDown("slow");
-        $("#welcomeMsg").slideUp("slow");
+        $("#welcomeMsg, #eventDetails, #hostContact").slideUp("slow");
         $("#continue_host", "#hostContact", "#eventDetails").hide();
+        $("#hostContact").appendTo("#addAdditionalHost");
+        $("#eventDetails").appendTo("#editEventDetails");
         }
 }
-
     
 window.onload = (event) => {
         //This hides some div and element within the hostDiv
@@ -408,6 +409,12 @@ window.onload = (event) => {
 
         $("#addEventName").click(function(){
         $("#eventName").toggle('slow');});
+
+        $("#addEventChangesButton").click(function(){
+        $("#eventDetails").toggle('slow')});
+
+        $("#addHostContacts").click(function(){
+        $("#addAdditionalHost").toggle('slow')});
 
         $("#submit_invite_button").click(function(){
             if ( $('input[name="inviteSelect"]:checked').val() != "electronic_invites")  {
