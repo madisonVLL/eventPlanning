@@ -52,10 +52,11 @@
                     <th>Email</th>
                 </table>
                 <p id="hostCount"></p>
-                <div id="addAdditionalHost"></div>
                 <br>
                 <p>Planning a Party Which Takes a Team? Click the<b> Additional Host</b> Button</p>
                 <button id="addHostContacts"><i class="fa-solid fa-user-plus"></i>Additional Host</button>
+                <div id="addAdditionalHost"></div>
+                <br>
                 <p>No Longer Want/Need Another Host? Search For Their <b>Phone Number</b> Delete From Host List</p>
                 <input id="searchHost" placeholder="Search For Host">
                 <button id="deleteHostButton"type="submit" name="Delete Host"><i class="fa-solid fa-user-minus"></i> Delete Host</button>
@@ -65,12 +66,12 @@
                 <table id="eventDetailsTable"></table>
                 <p>Add Event To You Calander</p>
                 <div title="Add Event to Calendar" class="addeventatc" data-render="inline-buttons">
-                    <span class="start">01/06/2024 08:00 AM</span>
-                    <span class="end">01/06/2024 10:00 AM</span>
-                    <span class="timezone">America/Los_Angeles</span>
-                    <span class="title">Summary of the event</span>
-                    <span class="description">Description of the event</span>
+                    <span class="start" id="event_start">01/06/2024 08:00 AM</span>
+                    <span class="end" id="event_end">01/06/2024 10:00 AM</span>
+                    <span class="timezone" id="event_timezone">America/Los_Angeles</span>
+                    <span class="title" id="event_name">Summary of the event</span>
                     <span class="location">Location of the event</span>
+                    <span class="organizer_email" id="event_host_email">john@example.com</span>
                 </div>
                 <p>Need To Change Some Event Details? Click the Change Event Details Button Down Below</p>
                 <button id="addEventChangesButton">Change Event Details</button>
