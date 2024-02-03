@@ -125,12 +125,11 @@ function displayList(dbName) {
                     var eventObject = createObjectFromArrays(eventTableHeaders, eventDetails);
                     console.log(eventObject);
                     clearTableBydbName("EventDetails");
-                    
-                    for (var [header, value] in Object.entries(eventObject)) {
-                        $('#eventDetailsTable').find('tr').each(function(){
-                            $(this).find('td').eq(n).after('<td>'+ header + '</td>');
-                       });
+
+                    for ( key, value of Object.entries(eventObject)) {
+                        $("#EventDetailsTable").append(key, value)
                     }
+
                 }
                 else if (store == "GuestInfo") {
 
