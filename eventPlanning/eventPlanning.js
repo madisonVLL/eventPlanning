@@ -125,17 +125,12 @@ function displayList(dbName) {
                     var eventObject = createObjectFromArrays(eventTableHeaders, eventDetails);
                     console.log(eventObject);
                     clearTableBydbName("EventDetails");
-                    evntObj = Object.entries(eventObject);
-                    var addEventDetails = evntObj.map( ([key, val] = entry) => {
-                        $("#EventDetailsTable").append("<br> ${key} ${value}");
-                    });
-                    for (each in eventObject, i = eventDetails.length()) {
-                        for (var key in eventObject) {
-                        $("#eventDetailsTable").css("font-weight","Bold")
-                        $("#eventDetailsTable").append("<br>" + key, eventObject[key]);
-                        }
-                    }
                     
+                    for (var [header, value] in Object.entries(eventObject)) {
+                        $('#eventDetailsTable').find('tr').each(function(){
+                            $(this).find('td').eq(n).after('<td>'+ header + '</td>');
+                       });
+                    }
                 }
                 else if (store == "GuestInfo") {
 
@@ -355,14 +350,14 @@ function date_to_calander(dbName) {
 
 function calander(dbName) {
     var date = getReq.result.date;
-                var startTime = new Date(date);
-                //this converts the date to a string so we can splice the start time and time zone values to AddCalander
-                var sTime = startTime.toString();
-                var evTime = sTime.slice(0, 24);
-                var evTimeZone = sTime.slice(25, 33);
+    var startTime = new Date(date);
+    //this converts the date to a string so we can splice the start time and time zone values to AddCalander
+    var sTime = startTime.toString();
+    var evTime = sTime.slice(0, 24);
+    var evTimeZone = sTime.slice(25, 33);
 
-                var eType = getReq.result.eventType;
-                //depending on the event type, this determine the hours for specific events(ex. child's party = 2 hours, dinner party = 3 hours)
+    var eType = getReq.result.eventType;
+    //depending on the event type, this determine the hours for specific events(ex. child's party = 2 hours, dinner party = 3 hours)
                 var eventLegnth = function(dbName, eType){
                     if (dbName == "HostInfo") {
                     if (eType == "Child's Birthday Party" || eType == "Work Event" || eType == "Child's Birthday Party") {
@@ -393,12 +388,17 @@ function calander(dbName) {
                 var eTime = TEnd.toString();
                 var eDate = eTime.slice(0, 24);
 
-                $("#event_start").html = ev
+                if (dbName == "Host_Info") {
+                    $("#event_start").html = sTime;
+                    $("#event_end").html = eDate;
+                    $("#event_timezon").html = evTimeZone;
+                    $("#")
 
                 document.getElementById("EventStart").innerHTML = evTime;
                 document.getElementById("EventEnd").innerHTML = eDate;
                 document.getElementById("timezone").innerHTML = evTimeZone;
                 document.getElementById("EventTypeCal").innerHTML = eType;
+                }
 
                 
                 
