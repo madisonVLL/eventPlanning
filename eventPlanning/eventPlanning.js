@@ -145,7 +145,7 @@ function displayList(dbName) {
     } 
 }
 
-function getAddressInfo(dbName) {
+function getAddressType(dbName) {
     var request = indexedDB.open(dbName, 2);
     request.onerror = (event) => {
         console.error("Cannot open index to display")
@@ -537,14 +537,15 @@ window.onload = (event) => {
             clearInputFields(["#searchHost"]);
         })
 
+        $("#clearHostButton").on("click", function() {(clearDatabase("HostInfo"))});
+        $("#chngEveDetBtn").on("click", function(){additionReadOnly(
+            ["#eventType, #eventDate, #InviteType, #hostAddress"], false)})
+
         $("#guest_continue").on("click", function(){
-            event_invite_type = getAddressInfo("HostInfo");
+            event_invite_type = getAddressType("HostInfo");
             if (event_invite_type == "paper_invites" || event_invite_type == "both_paper_elec_invites") {
                 
             }
         })
-        $("#clearHostButton").on("click", function() {(clearDatabase("HostInfo"))});
-        $("#chngEveDetBtn").on("click", function(){additionReadOnly(
-            ["#eventType, #eventDate, #InviteType, #hostAddress"], false)})
 
     };
