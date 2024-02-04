@@ -101,23 +101,23 @@ function displayList(dbName) {
                     var listEventDate = dtLocalTDate(cursor.value.eventDate); 
                     cursor.continue(); 
                     if (cursor.value.address === "none" && cursor.value.eventName === "none") {
-                        var eventTableHeaders = ["Event Type: ", "Event Date: ", "Invite Type: "]
+                        var eventTableHeaders = ["Event Type ", "Event Date ", "Invite Type "]
                         var eventDetails = [cursor.value.eventType, listEventDate, cursor.value.inviteType]
                     } 
                     else if (cursor.value.eventName !== "none" && cursor.value.address === "none") {
-                        var eventTableHeaders = ["Event Name: ", "Event Type: ", "Event Date: ", "Invite Type: "]
+                        var eventTableHeaders = ["Event Name ", "Event Type ", "Event Date ", "Invite Type "]
                         var eventDetails = [cursor.value.eventName, cursor.value.eventType, listEventDate, 
                             cursor.value.inviteType]
                     }
                     else if (cursor.value.eventName === "none" && cursor.value.address !== "none") {
-                        var eventTableHeaders = ["Event Type: ", "Event Date: ", "Invite Type: ", 
-                        "Invitation Return Address: "]
+                        var eventTableHeaders = ["Event Type ", "Event Date ", "Invite Type ", 
+                        "Invitation Return Address "]
                         var eventDetails = [cursor.value.eventType, listEventDate, cursor.value.inviteType,
                              cursor.value.address]
                     }
                     else {
-                        var eventTableHeaders = ["Event Name: ", "Event Type: ", "Event Date: ", "Invite Type: ",
-                         "Invitation Return Address: "]
+                        var eventTableHeaders = ["Event Name ", "Event Type ", "Event Date ", "Invite Type ",
+                         "Invitation Return Address "]
                         var eventDetails = [cursor.value.eventName, cursor.value.eventType, listEventDate,
                              cursor.value.inviteType, cursor.value.address]
                     }   
@@ -126,8 +126,8 @@ function displayList(dbName) {
                     console.log(eventObject);
                     clearTableBydbName("EventDetails");
 
-                    for ( key, value of Object.entries(eventObject)) {
-                        $("#EventDetailsTable").append(key, value)
+                    for (var [key, value] of Object.entries(object1)) {
+                        $("#EventDetailsTable").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>")
                     }
 
                 }
