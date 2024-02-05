@@ -48,7 +48,7 @@ table tbody tr:hover {
 }
 
 .form_div input[type=text], input[type=tel], input[type=email], textarea, 
-button {
+button, input[type=datetime-local] {
     width: 100%;
     padding: 0.5em;
     box-sizing: border-box;

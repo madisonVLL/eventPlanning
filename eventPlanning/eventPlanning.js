@@ -126,7 +126,7 @@ function displayList(dbName) {
                     console.log(eventObject);
                     clearTableBydbName("EventDetails");
 
-                    for (var [key, value] of Object.entries(object1)) {
+                    for (var [key, value] of Object.entries(eventObject)) {
                         $("#EventDetailsTable").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>")
                     }
 
