@@ -123,14 +123,10 @@ function displayList(dbName) {
                     }   
                     //combines two arrays and creates a key value pair. key = eventTableHeaders value = eventDetails
                     var eventObject = createObjectFromArrays(eventTableHeaders, eventDetails);
-                    console.log(eventObject);
-                    clearTableBydbName("EventDetails");
 
-                    for (var [key, value] of Object.entries(eventObject)) {
-                        $("#EventDetailsTable").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>")
-                        console.log("added " + key + " to event table")
+                    for (const key in eventObject) {
+                        $("#eventDetailsTable").append('<tr><td>${key}</td><td>${evetObject[key]}</td></tr>');
                     }
-
                 }
                 else if (store == "GuestInfo") {
 
