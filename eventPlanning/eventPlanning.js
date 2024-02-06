@@ -128,6 +128,7 @@ function displayList(dbName) {
 
                     for (var [key, value] of Object.entries(eventObject)) {
                         $("#EventDetailsTable").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>")
+                        console.log("added " + key + " to event table")
                     }
 
                 }
@@ -542,9 +543,11 @@ window.onload = (event) => {
             ["#eventType, #eventDate, #InviteType, #hostAddress"], false)})
 
         $("#guest_continue").on("click", function(){
+            $("#hostDiv").slideDown("slow");
+            $("#guestDiv").slideDown("slow");
             event_invite_type = getAddressType("HostInfo");
-            if (event_invite_type == "paper_invites" || event_invite_type == "both_paper_elec_invites") {
-                
+            if (event_invite_type == "electronic_invites") {
+                $("#guest_address_div").hide();
             }
         })
 
