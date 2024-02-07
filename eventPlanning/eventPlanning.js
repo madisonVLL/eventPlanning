@@ -539,12 +539,16 @@ window.onload = (event) => {
             ["#eventType, #eventDate, #InviteType, #hostAddress"], false)})
 
         $("#guest_continue").on("click", function(){
-            $("#hostDiv").slideDown("slow");
+            $("#hostDiv").slideUp("slow");
             $("#guestDiv").slideDown("slow");
             event_invite_type = getAddressType("HostInfo");
             if (event_invite_type == "electronic_invites") {
                 $("#guest_address_div").hide();
             }
+        })
+        $("#back_to_hosts").on("click", function(){
+            $('div:not(#hostDiv)').fadeIn("slow");  // hide everything that isn't #myDiv
+            $('#hostDiv').appendTo('body');
         })
 
     };
