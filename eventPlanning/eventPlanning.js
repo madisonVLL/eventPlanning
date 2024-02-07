@@ -125,7 +125,7 @@ function displayList(dbName) {
                     var eventObject = createObjectFromArrays(eventTableHeaders, eventDetails);
 
                     for (const key in eventObject) {
-                        $("#eventDetailsTable").append('<tr><td>${key}</td><td>${evetObject[key]}</td></tr>');
+                        $("#eventDetailsTable").append('<tr><td>'+ key + '</td><td>' + evetObject[key] + '</td></tr>');
                     }
                 }
                 else if (store == "GuestInfo") {
