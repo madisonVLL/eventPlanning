@@ -99,27 +99,29 @@ function displayList(dbName) {
                     $hostTR.id = cursor.value.phone; 
                     $("#HostInfoTable").append($hostTR); 
                     var listEventDate = dtLocalTDate(cursor.value.eventDate); 
+                    var invitationType = remove_underscores(cursor.value.inviteType)
+                    console.log(invitationType)
                     cursor.continue(); 
                     if (cursor.value.address === "none" && cursor.value.eventName === "none") {
                         var eventTableHeaders = ["Event Type ", "Event Date ", "Invite Type "]
-                        var eventDetails = [cursor.value.eventType, listEventDate, cursor.value.inviteType]
+                        var eventDetails = [cursor.value.eventType, listEventDate, invitationType]
                     } 
                     else if (cursor.value.eventName !== "none" && cursor.value.address === "none") {
                         var eventTableHeaders = ["Event Name ", "Event Type ", "Event Date ", "Invite Type "]
                         var eventDetails = [cursor.value.eventName, cursor.value.eventType, listEventDate, 
-                            cursor.value.inviteType]
+                            invitationType]
                     }
                     else if (cursor.value.eventName === "none" && cursor.value.address !== "none") {
                         var eventTableHeaders = ["Event Type ", "Event Date ", "Invite Type ", 
                         "Invitation Return Address "]
-                        var eventDetails = [cursor.value.eventType, listEventDate, cursor.value.inviteType,
+                        var eventDetails = [cursor.value.eventType, listEventDate, invitationType,
                              cursor.value.address]
                     }
                     else {
                         var eventTableHeaders = ["Event Name ", "Event Type ", "Event Date ", "Invite Type ",
                          "Invitation Return Address "]
                         var eventDetails = [cursor.value.eventName, cursor.value.eventType, listEventDate,
-                             cursor.value.inviteType, cursor.value.address]
+                             invitationType, cursor.value.address]
                     }   
                     //combines two arrays and creates a key value pair. key = eventTableHeaders value = eventDetails
                     var eventObject = createObjectFromArrays(eventTableHeaders, eventDetails);
@@ -339,9 +341,10 @@ function createObjectFromArrays(keys, values) {
     return result;
 }
 
-function date_to_calander(dbName) {
-    var cursor = open_cursor(dbName)
-    cursor.eventDate.slice()    
+// returns a string with spaces instead of underscores 
+function remove_underscores(string) {
+    return string.replaceAll('_', ' ')
+
 }
 
 function calander(dbName) {
@@ -354,27 +357,27 @@ function calander(dbName) {
 
     var eType = getReq.result.eventType;
     //depending on the event type, this determine the hours for specific events(ex. child's party = 2 hours, dinner party = 3 hours)
-                var eventLegnth = function(dbName, eType){
-                    if (dbName == "HostInfo") {
-                    if (eType == "Child's Birthday Party" || eType == "Work Event" || eType == "Child's Birthday Party") {
-                        return 2;
-                    }
-                    else if (eType == "Wedding" || eType == "Coming of Age Party" || eType == "Quinceanera" || eType == "Bar/Bat Mitzvah") {
-                        return 6;
-                    }
-                    else if (eType == "Dinner Party" || eType == "Holiday Party" ||
-                     eType == "Birthday Party" || eType == "Pool Party" || eType == "Theme Party" || 
-                     eType == "Rehersal Dinner" || eType == "Costume Party" || eType == "Housewarming Party") {
-                        return 3
-                     }
-                    else if (eType == "Game Watch Party" || eType == "Game Night" || eType == "Tailgate") {
-                        return 4
-                    }
-                    else {
-                        return 24
-                    }
-                }
-                }
+    var eventLegnth = function(dbName, eType){
+        if (dbName == "HostInfo") {
+            if (eType == "Child's Birthday Party" || eType == "Work Event" || eType == "Child's Birthday Party") {
+                return 2;
+            }
+            else if (eType == "Wedding" || eType == "Coming of Age Party" || eType == "Quinceanera" || eType == "Bar/Bat Mitzvah") {
+                return 6;
+            }
+            else if (eType == "Dinner Party" || eType == "Holiday Party" ||
+                eType == "Birthday Party" || eType == "Pool Party" || eType == "Theme Party" || 
+                eType == "Rehersal Dinner" || eType == "Costume Party" || eType == "Housewarming Party") {
+                return 3
+            }
+            else if (eType == "Game Watch Party" || eType == "Game Night" || eType == "Tailgate") {
+                return 4
+            }
+            else {
+                return 24
+            }
+        }
+    }
                 //this is the returned value for the event legnth
                 var lEvent = eventLegnth(dbName, eType);
             
@@ -387,8 +390,8 @@ function calander(dbName) {
                 if (dbName == "Host_Info") {
                     $("#event_start").html = sTime;
                     $("#event_end").html = eDate;
-                    $("#event_timezon").html = evTimeZone;
-                    $("#")
+                    $("#event_timezone").html = evTimeZone;
+                    $("#event_name").html = 
 
                 document.getElementById("EventStart").innerHTML = evTime;
                 document.getElementById("EventEnd").innerHTML = eDate;
@@ -547,8 +550,7 @@ window.onload = (event) => {
             }
         })
         $("#back_to_hosts").on("click", function(){
-            $('div:not(#hostDiv)').fadeIn("slow");  // hide everything that isn't #myDiv
-            $('#hostDiv').appendTo('body');
+            $("#hostDiv").slideDown("slow")
         })
 
     };
