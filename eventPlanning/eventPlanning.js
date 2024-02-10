@@ -549,9 +549,12 @@ window.onload = (event) => {
             if (event_invite_type == "electronic_invites") {
                 $("#guest_address_div").hide();
             }
+            $("#reqEmailPhoneBtnGuest").click(function(){
+                $("#reqEmailPhoneExpGuest").toggle('slow');});
         })
         $("#back_to_hosts").on("click", function(){
             $("#hostDiv").slideDown("slow")
+            $("guestDiv").slideUp("slow")
         })
 
     };
