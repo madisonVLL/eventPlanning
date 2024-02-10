@@ -33,6 +33,7 @@ function itemDB(dbName) {
         var dataCount = countRequest.result;
         if (dataCount >= 1) {
             switchTable(dbName)
+            update_calander(dbName)
         }
         else {
             return false;
@@ -347,8 +348,10 @@ function remove_underscores(string) {
 
 }
 
-function calander(dbName) {
-    var date = getReq.result.date;
+function update_calander(dbName) {
+    event_cursor = open_cursor(dbName)
+    console.log(event_cursor)
+    console.log(cursor.value.eventDate)
     var startTime = new Date(date);
     //this converts the date to a string so we can splice the start time and time zone values to AddCalander
     var sTime = startTime.toString();
@@ -378,11 +381,9 @@ function calander(dbName) {
             }
         }
     }
-                //this is the returned value for the event legnth
-                var lEvent = eventLegnth(dbName, eType);
             
-               //this converts the date to a string so we can splice the end time to AddCalander
-                var endTime = startTime.setHours(startTime.getHours() + lEvent);
+    //this converts the date to a string so we can splice the end time to AddCalander
+                var endTime = startTime.setHours(startTime.getHours() + eventLegnth);
                 var TEnd = new Date(endTime);
                 var eTime = TEnd.toString();
                 var eDate = eTime.slice(0, 24);
@@ -391,7 +392,7 @@ function calander(dbName) {
                     $("#event_start").html = sTime;
                     $("#event_end").html = eDate;
                     $("#event_timezone").html = evTimeZone;
-                    $("#event_name").html = 
+                    $("#event_name").html = None;
 
                 document.getElementById("EventStart").innerHTML = evTime;
                 document.getElementById("EventEnd").innerHTML = eDate;
