@@ -417,6 +417,7 @@ function open_cursor(dbName) {
         var store = transaction.objectStore(dbName);
         store.openCursor().onsuccess = (event) => {
             var cursor = event.target.result;
+            console.log("cursor:", cursor)
             return cursor
         }
     }
