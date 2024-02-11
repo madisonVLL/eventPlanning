@@ -405,7 +405,8 @@ function update_calander(dbName) {
                     $("#event_start").html = sTime;
                     $("#event_end").html = eDate;
                     $("#event_timezone").html = evTimeZone;
-                    $("#event_name").html = None;
+                    $("#event_name").html = cursor.value.eventName;
+                    $("#organizer_email").html = cursor.value.
 
                 document.getElementById("EventStart").innerHTML = evTime;
                 document.getElementById("EventEnd").innerHTML = eDate;
@@ -432,6 +433,22 @@ function open_cursor(dbName) {
             var cursor = event.target.result;
             console.log("cursor:", cursor)
             return cursor
+        }
+    }
+}
+
+function searchCursor(dbName, search_term){
+    var request = indexedDB.open(dbName, 2);
+    request.onerror = (event) => {
+        console.error("Cannot open " + dbName)
+    }
+    request.onsuccess = (event) => {
+        var db = event.target.result;
+        var transaction = db.transaction(dbName, "readonly");
+        var store = transaction.objectStore(dbName);
+        store.openCursor().onsuccess = (event) => {
+            var cursor = event.target.result;
+
         }
     }
 }
