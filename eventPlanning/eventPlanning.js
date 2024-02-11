@@ -349,9 +349,21 @@ function remove_underscores(string) {
 }
 
 function update_calander(dbName) {
-    event_cursor = open_cursor(dbName)
-    console.log(event_cursor)
-    console.log(cursor.value.eventDate)
+    var request = indexedDB.open(dbName, 2);
+    request.onerror = (event) => {
+        console.error("Cannot open " + dbName)
+    }
+    request.onsuccess = (event) => {
+        var db = event.target.result;
+        var transaction = db.transaction(dbName, "readonly");
+        var store = transaction.objectStore(dbName);
+        store.openCursor().onsuccess = (event) => {
+            var cursor = event.target.result;
+            console.log("cursor:", cursor)
+        }}
+
+    date = cursor.value.eventDate
+    console.log(date)
     var startTime = new Date(date);
     //this converts the date to a string so we can splice the start time and time zone values to AddCalander
     var sTime = startTime.toString();
@@ -362,6 +374,7 @@ function update_calander(dbName) {
     //depending on the event type, this determine the hours for specific events(ex. child's party = 2 hours, dinner party = 3 hours)
     var eventLegnth = function(dbName, eType){
         if (dbName == "HostInfo") {
+            eType = cursor.value.eventType
             if (eType == "Child's Birthday Party" || eType == "Work Event" || eType == "Child's Birthday Party") {
                 return 2;
             }
