@@ -568,6 +568,7 @@ window.onload = (event) => {
             $("#hostDiv").slideUp("slow");
             $("#guestDiv").slideDown("slow");
             event_invite_type = getAddressType("HostInfo");
+            console.log(event_invite_type);
             if (event_invite_type == "electronic_invites") {
                 $("#guest_address_div").hide();
             }
