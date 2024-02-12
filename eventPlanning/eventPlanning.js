@@ -360,64 +360,55 @@ function update_calander(dbName) {
         store.openCursor().onsuccess = (event) => {
             var cursor = event.target.result;
             console.log("cursor:", cursor)
-        }}
 
-    date = cursor.value.eventDate
-    console.log(date)
-    var startTime = new Date(date);
-    //this converts the date to a string so we can splice the start time and time zone values to AddCalander
-    var sTime = startTime.toString();
-    var evTime = sTime.slice(0, 24);
-    var evTimeZone = sTime.slice(25, 33);
+            date = cursor.value.eventDate
+            console.log(date)
+            var startTime = new Date(date);
 
-    var eType = getReq.result.eventType;
-    //depending on the event type, this determine the hours for specific events(ex. child's party = 2 hours, dinner party = 3 hours)
-    var eventLegnth = function(dbName, eType){
-        if (dbName == "HostInfo") {
-            eType = cursor.value.eventType
-            if (eType == "Child's Birthday Party" || eType == "Work Event" || eType == "Child's Birthday Party") {
-                return 2;
-            }
-            else if (eType == "Wedding" || eType == "Coming of Age Party" || eType == "Quinceanera" || eType == "Bar/Bat Mitzvah") {
-                return 6;
-            }
-            else if (eType == "Dinner Party" || eType == "Holiday Party" ||
-                eType == "Birthday Party" || eType == "Pool Party" || eType == "Theme Party" || 
-                eType == "Rehersal Dinner" || eType == "Costume Party" || eType == "Housewarming Party") {
-                return 3
-            }
-            else if (eType == "Game Watch Party" || eType == "Game Night" || eType == "Tailgate") {
-                return 4
-            }
-            else {
-                return 24
-            }
-        }
-    }
-            
-    //this converts the date to a string so we can splice the end time to AddCalander
+             //this converts the date to a string so we can splice the start time and time zone values to AddCalander
+            var sTime = startTime.toString();
+            var evTime = sTime.slice(0, 24);
+            var evTimeZone = sTime.slice(25, 33);
+
+            var eType = cursor.value.eventType;
+            //depending on the event type, this determine the hours for specific events(ex. child's party = 2 hours, dinner party = 3 hours)
+            var eventLegnth = function(dbName, eType){
+                if (dbName == "HostInfo") {
+                    eType = cursor.value.eventType
+                    if (eType == "Child's Birthday Party" || eType == "Work Event" || eType == "Child's Birthday Party") {
+                        return 2;
+                    }
+                    else if (eType == "Wedding" || eType == "Coming of Age Party" || eType == "Quinceanera" || eType == "Bar/Bat Mitzvah") {
+                        return 6;
+                    }
+                    else if (eType == "Dinner Party" || eType == "Holiday Party" ||
+                        eType == "Birthday Party" || eType == "Pool Party" || eType == "Theme Party" || 
+                        eType == "Rehersal Dinner" || eType == "Costume Party" || eType == "Housewarming Party") {
+                        return 3
+                    }
+                    else if (eType == "Game Watch Party" || eType == "Game Night" || eType == "Tailgate") {
+                        return 4
+                    }
+                    else {
+                        return 24
+                    }
+                }
+                }
+
+                //this converts the date to a string so we can splice the end time to AddCalander
                 var endTime = startTime.setHours(startTime.getHours() + eventLegnth);
                 var TEnd = new Date(endTime);
                 var eTime = TEnd.toString();
                 var eDate = eTime.slice(0, 24);
 
                 if (dbName == "Host_Info") {
-                    $("#event_start").html = sTime;
+                    $("#event_start").html = evTime;
                     $("#event_end").html = eDate;
                     $("#event_timezone").html = evTimeZone;
                     $("#event_name").html = cursor.value.eventName;
-                    $("#organizer_email").html = cursor.value.
-
-                document.getElementById("EventStart").innerHTML = evTime;
-                document.getElementById("EventEnd").innerHTML = eDate;
-                document.getElementById("timezone").innerHTML = evTimeZone;
-                document.getElementById("EventTypeCal").innerHTML = eType;
+                    $("#organizer_email").html = cursor.value.email;
                 }
-
-                
-                
-    
-
+            }}
 }
 
 function open_cursor(dbName) {
