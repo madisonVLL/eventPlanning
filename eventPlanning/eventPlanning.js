@@ -402,15 +402,24 @@ function update_calander(dbName) {
                 var eDate = eTime.slice(0, 24);
 
                 if (dbName == "Host_Info") {
+                    $("#eventCalander").append('<span> '+ evTime + '<span>');
+                    $('<span> '+ evTime + '<span>').addClass("start").appendTo("#eventCalander");
                     $("#event_start").html = evTime;
                     $("#event_end").html = eDate;
                     $("#event_timezone").html = evTimeZone;
                     $("#event_name").html = cursor.value.eventName;
                     $("#organizer_email").html = cursor.value.email;
+                    
+
+                
                 }
+
+                console.log('added to calander')
             }}
 }
 
+
+//this function is just for me to remember the structure of open index
 function open_cursor(dbName) {
     var request = indexedDB.open(dbName, 2);
     request.onerror = (event) => {
@@ -422,7 +431,6 @@ function open_cursor(dbName) {
         var store = transaction.objectStore(dbName);
         store.openCursor().onsuccess = (event) => {
             var cursor = event.target.result;
-            console.log("cursor:", cursor)
             return cursor
         }
     }
@@ -492,6 +500,7 @@ function switchTable(dbName) {
         $("#editHostDiv").slideDown("slow");
         $("#welcomeMsg, #eventDetails, #hostContact").slideUp("slow");
         $("#continue_host", "#hostContact", "#eventDetails").hide();
+        $("#additional_host").show();
         $("#hostContact").appendTo("#addAdditionalHost");
         $("#eventDetails").appendTo("#editEventDetails");
         }
@@ -499,7 +508,9 @@ function switchTable(dbName) {
     
 window.onload = (event) => {
         //This hides some div and element within the hostDiv
-        $("#reqEmailPhoneExp, #hostAddressWExp, #editHostDiv, #eventNameWExp, #changeEventDetailsButton, #additionalHostButton, #guestDiv").hide();
+        $("#reqEmailPhoneExp, #hostAddressWExp, #editHostDiv, #eventNameWExp, \
+        #changeEventDetailsButton, #additionalHostButton, #guestDiv,\
+         #additional_host").hide();
         /*This sets up the autocomplete for the event inputs*/
         const eventTypes = ["Wedding", "Birthday Party", "Sleepover/Slumber Party",
         "Child's Birthday Party", "Dinner Party", "Game Night", "Costume Party", 
@@ -563,6 +574,12 @@ window.onload = (event) => {
         $("#clearHostButton").on("click", function() {(clearDatabase("HostInfo"))});
         $("#chngEveDetBtn").on("click", function(){additionReadOnly(
             ["#eventType, #eventDate, #InviteType, #hostAddress"], false)})
+
+        $("#additional_host").on("click", function() {
+            var hostData = collectData("HostInfo"); 
+            addToIndex("HostInfo", hostData);
+            addToSearch("HostInfo", searchHost);
+        })
 
         $("#guest_continue").on("click", function(){
             $("#hostDiv").slideUp("slow");

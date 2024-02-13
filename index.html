@@ -63,7 +63,7 @@
                 <p><b>Event Details:</b></p>
                 <table id="eventDetailsTable"></table>
                 <p>Add Event To You Calander</p>
-                <div title="Add Event to Calendar" class="addeventatc" data-render="inline-buttons">
+                <div title="Add Event to Calendar" class="addeventatc" id="eventCalander "data-render="inline-buttons">
                     <span class="start" id="event_start">01/06/2024 08:00 AM</span>
                     <span class="end" id="event_end">01/06/2024 10:00 AM</span>
                     <span class="timezone" id="event_timezone">America/Los_Angeles</span>
@@ -101,6 +101,7 @@
         <input type="text" id="hostPhone" req autocomplete="tel">
         <p>Email Address</p>
         <input type="text" id="hostEmail" autocomplete="Email" placeholder="Email" req>
+        <button id="additional_host"><i class="fa-solid fa-user-plus"></i> Add Host</button>
     </div>
     <div id="eventDetails">
             <p>Event Type</p>
@@ -123,7 +124,7 @@
             </div>
             <br>
             <button id="changeEventDetailsButton">Edit Event Details</button>
-            <p id="continue_host">All set with the host and event details? Press the continue button <button id="host_continue">Continue</button></p>
+            <p id="continue_host">All set with first host and event details? Press the continue button <button id="host_continue">Continue</button></p>
     </div>
         <p>All done with adding hosts and event details? <button id="guest_continue"><b>Continue to Guests</b></button></p>
     </div>
@@ -160,4 +161,3 @@
     </div>
 </body>
 </html>
-
