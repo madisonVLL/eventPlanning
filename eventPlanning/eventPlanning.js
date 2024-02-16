@@ -234,6 +234,7 @@ function addToSearch(dbName, array) {
         var store = transaction.objectStore(dbName);
         store.openCursor().onsuccess = (event) => {
             var cursor = event.target.result; 
+            console.log("cursor: " + cursor)
             if (dbName == "HostInfo"|| dbName == "GuestInfo") { 
                 array.unshift(cursor.value.phone);
                 array.unshift(cursor.value.firstName);
@@ -471,8 +472,9 @@ function collectData(dbName) {
                 address: hostAddress
             }
 
+            var edited_data = sameDetails(dbName, data)
     
-            return data
+            return edited_data
         }
         else if (dbName == "GuestInfo") {
             var data = {
@@ -490,6 +492,29 @@ function collectData(dbName) {
         else {
             console.error("No data/index to select")
         }
+}
+
+function sameDetails(dbName, dictionary) {
+    var request = indexedDB.open(dbName, 2);
+    request.onerror = (event) => {
+        console.error("Cannot open " + dbName)
+    }
+    request.onsuccess = (event) => {
+        var db = event.target.result;
+        var transaction = db.transaction(dbName, "readonly");
+        var store = transaction.objectStore(dbName);
+        if (store.count() > 0) {
+            store.openCursor().onsuccess = (event) => {
+                var cursor = event.target.result;
+                if (dbName == "Host_Info") {
+                    dictionary[inviteType] = cursor.value.inviteType
+                    dictionary[eventType] = cursor.value.eventType
+                    dictionary[eventDate] = cursor.value.eventDate
+                    dictionary[eventDate] = cursor.value.address
+                }
+            }
+        }
+    }
 }
 
 //switches from welcome of each databas to the table element
@@ -576,8 +601,8 @@ window.onload = (event) => {
             ["#eventType, #eventDate, #InviteType, #hostAddress"], false)})
 
         $("#additional_host").on("click", function() {
-            var hostData = collectData("HostInfo"); 
-            addToIndex("HostInfo", hostData);
+            var addithost = collectData("HostInfo"); 
+            addToIndex("HostInfo", addithost);
             addToSearch("HostInfo", searchHost);
         })
 
