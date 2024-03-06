@@ -619,7 +619,7 @@ window.onload = (event) => {
         })
         $("#back_to_hosts").on("click", function(){
             $("#hostDiv").slideDown("slow")
-            $("guestDiv").slideUp("slow")
+            $("#guestDiv").slideUp("slow")
         })
 
     };
